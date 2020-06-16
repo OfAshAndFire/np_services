@@ -1,5 +1,7 @@
 node_modules/**/*
 npm-debug.*
+dist/**/*
+coverage/**/*
 *.env
 *.jks
 *.p8
