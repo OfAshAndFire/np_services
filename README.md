@@ -14,3 +14,7 @@
 * Before issuing Pull Request, rebase against master to pickup changes
 * Issue pull request from your branch to development, with tests
 * After Code Review and approval, merge into master
+* Add your name to Contributers section below on README
+
+
+### Contributors
