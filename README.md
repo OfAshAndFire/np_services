@@ -1,9 +1,9 @@
 ### This project is as of yet, unnamed
 
 ## Setup
-`npm install`
-`npx sequelize db:create`
-`npx sequelize db:migrate`
+1) `npm install`
+2) `npx sequelize db:create`
+3) `npx sequelize db:migrate`
 
 ## Running Server
 `npm start`
