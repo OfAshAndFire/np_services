@@ -1,3 +1,5 @@
+![Node.js CI](https://github.com/OfAshAndFire/np_services/workflows/Node.js%20CI/badge.svg)
+
 ### This project is as of yet, unnamed
 
 ## Env File
