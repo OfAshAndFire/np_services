@@ -2,12 +2,17 @@ const express = require("express");
 const app = express();
 const swaggerUi = require('swagger-ui-express')
 import { swaggerDocument } from './swaggerDoc'
+import bodyParser from 'body-parser'
 import models from '../models'
 import { initDb } from './db'
 
 if(process.env.DB_SYNC){
   initDb()
 }
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+
 app.use((req, res, next) => {
   req.db = models
   next()
