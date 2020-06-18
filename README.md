@@ -17,8 +17,8 @@ DB_SYNC=true // this tells the db to create tables and run migrations
 2) `npx sequelize db:create`
 3) `npx sequelize db:migrate`
 
-## Running Server
-`npm start`
+## Run server in development mode
+`npm run dev`
 
 ## Contributing Guidelines
 * Branch from development
