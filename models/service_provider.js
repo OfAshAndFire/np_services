@@ -1,5 +1,7 @@
 'use strict';
-const uuid = require('uuid/v4');
+const Sequelize = require('sequelize');
+
+const {v4: uuidV4} = require('uuid');
 
 module.exports = (sequelize, DataTypes) => {
   const service_provider = sequelize.define('service_provider', {
@@ -30,6 +32,6 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
   };
 
-  service_provider.beforeCreate(provider => provider.id = uuid());
+  service_provider.beforeCreate(provider => provider.id = uuidV4());
   return service_provider;
 };
