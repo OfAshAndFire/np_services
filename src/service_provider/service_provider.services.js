@@ -8,19 +8,15 @@ export function FindAllServiceProvidersById(db, { id }) {
 }
 
 export async function CreateServiceProvider(db, data) {
-    return new db.service_provider.create(data)
+    return db.service_provider.create(data)
 }
 
 export async function UpdateServiceProvider(db, { id }, data) {
-     let ServiceProvider = await db.service_provider.findOne({ id })
-     // easier than looping through keys to update
-     ServiceProvider = {
-         ...ServiceProvider,
-         ...data
-     }
      // if we include a fields option we can limit valid fields, to
      // prevent malicious updating  model.save({fields: ['name']}) for instance
-    return ServiceProvider.save()
+    return db.service_provider
+    .update({...data},{ returning: true, where: { id }})
+    .then(([ rowsUpdate, [updatedServiceProvider] ]) => updatedServiceProvider)
 }
 
 export async function DeleteServiceProvider(db, { id }) {

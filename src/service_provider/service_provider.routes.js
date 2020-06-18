@@ -45,7 +45,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         await DeleteServiceProvider(req.db, req.params)
-        res.status(204);
+        res.status(204).json({success: true});
     } catch (err) {
         res.status(500).json({error: "There was a server error"})
     }

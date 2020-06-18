@@ -1,9 +1,6 @@
 'use strict';
 const Sequelize = require('sequelize');
-
-const {v4: uuidV4} = require('uuid');
-
-module.exports = (sequelize, DataTypes) => {
+const {v4: uuidV4} = require('uuid');module.exports = (sequelize, DataTypes) => {
   const service_provider = sequelize.define('service_provider', {
     id: {
       allowNull: false,
@@ -27,11 +24,16 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: Sequelize.DATE
     }
-  }, {});
+  }, {
+    hooks: {
+      beforeValidate: (provider, options) => {
+        console.log('this is being called')
+        provider.id = uuidV4()
+      }
+    }
+  });
   service_provider.associate = function(models) {
     // associations can be defined here
   };
-
-  service_provider.beforeCreate(provider => provider.id = uuidV4());
   return service_provider;
 };
