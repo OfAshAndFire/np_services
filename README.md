@@ -19,7 +19,7 @@ DB_SYNC=true // this tells the db to create tables and run migrations
 `npm start`
 
 ## Contributing Guidelines
-* Branch from master
+* Branch from development
 * Work on your branch
 * Before issuing Pull Request, rebase against master to pickup changes
 * Issue pull request from your branch to development, with tests
