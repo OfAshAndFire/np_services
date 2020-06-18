@@ -1,7 +1,50 @@
 var router = require('express').Router();
 import { FindAllServiceProviders, CreateServiceProvider, FindAllServiceProvidersById, UpdateServiceProvider, DeleteServiceProvider } from './service_provider.services'
 
-// Base Get Route
+/**
+ * @swagger
+ *
+ * definitions:
+ *   ServiceProvider:
+ *     type: object
+ *     required:
+ *       - id
+ *       - name
+ *       - primary_phone
+ *     properties:
+ *       id:
+ *         type: string
+ *       name:
+ *         type: string
+ *       primary_phone:
+ *         type: string
+ *       description:
+ *         type: string
+ *       created_at:
+ *         type: date-time 
+ *       updated_at:
+ *         type: date-time 
+ *   ServiceProviderArray:
+ *     allOf:
+ *       - $ref: '#/definitions/ServiceProvider'
+ */
+
+
+/**
+ * @swagger
+ *
+ * /service_provider:
+ *   get:
+ *     description: Service Provider Get All Route
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: login
+ *         schema:
+ *            type: array
+ *            $ref: '#/definitions/ServiceProviderArray'
+ */
 router.get('/', async (req, res) => {
     try {
         let data = await FindAllServiceProviders(req.db)
@@ -11,7 +54,26 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Base GetOne Route
+/**
+ * @swagger
+ *
+ * /service_provider/:id:
+ *   get:
+ *     description: Service Provider Get All Route
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         type: string
+ *         required: true
+ *         description: Id of the service provider requesting
+ *     responses:
+ *       200:
+ *         description: login
+ *         schema:
+ *            $ref: '#/definitions/ServiceProvider'
+ */
 router.get('/:id', async (req, res) => {
     try {
         let data = await FindAllServiceProvidersById(req.db, req.params)

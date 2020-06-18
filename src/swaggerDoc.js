@@ -17,5 +17,5 @@ export const swaggerDocument = {
             }
         ]
     },
-    apis: ["./src/app.js"]
+    apis: ["./src/app.js", "./src/service_provider/*.js"]
 }
