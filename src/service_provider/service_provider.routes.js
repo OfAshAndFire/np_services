@@ -5,6 +5,31 @@ import { FindAllServiceProviders, CreateServiceProvider, FindAllServiceProviders
  * @swagger
  *
  * definitions:
+ *   ServiceProviderUpdate:
+ *     type: object
+ *     required:
+ *       - id
+ *       - name
+ *       - primary_phone
+ *     properties:
+ *       name:
+ *         type: string
+ *       primary_phone:
+ *         type: string
+ *       description:
+ *         type: string
+ *   NewServiceProvider:
+ *     type: object
+ *     required:
+ *       - name
+ *       - primary_phone
+ *     properties:
+ *       name:
+ *         type: string
+ *       primary_phone:
+ *         type: string
+ *       description:
+ *         type: string
  *   ServiceProvider:
  *     type: object
  *     required:
@@ -21,9 +46,11 @@ import { FindAllServiceProviders, CreateServiceProvider, FindAllServiceProviders
  *       description:
  *         type: string
  *       created_at:
- *         type: date-time 
+ *         type: string
+ *         format: date 
  *       updated_at:
- *         type: date-time 
+ *         type: string
+ *         format: date 
  *   ServiceProviderArray:
  *     allOf:
  *       - $ref: '#/definitions/ServiceProvider'
@@ -39,11 +66,14 @@ import { FindAllServiceProviders, CreateServiceProvider, FindAllServiceProviders
  *     produces:
  *       - application/json
  *     responses:
+ *       500:
+ *         description: Server Error
  *       200:
  *         description: login
  *         schema:
  *            type: array
- *            $ref: '#/definitions/ServiceProviderArray'
+ *            items: 
+ *              $ref: '#/definitions/ServiceProviderArray'
  */
 router.get('/', async (req, res) => {
     try {
@@ -69,8 +99,10 @@ router.get('/', async (req, res) => {
  *         required: true
  *         description: Id of the service provider requesting
  *     responses:
+ *       500:
+ *         description: Server Error
  *       200:
- *         description: login
+ *         description: Successful
  *         schema:
  *            $ref: '#/definitions/ServiceProvider'
  */
@@ -83,7 +115,29 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// Base Create Route
+/**
+ * @swagger
+ *
+ * /service_provider:
+ *   post:
+ *     description: Service Provider create one route
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - in:  body
+ *         description: Service Provider Updated Data Object
+ *         required: true
+ *         type: string
+ *         schema:
+ *           $ref: '#/definitions/NewServiceProvider'
+ *     responses:
+ *       500:
+ *         description: Server Error
+ *       200:
+ *         description: Successful
+ *         schema:
+ *            $ref: '#/definitions/ServiceProvider'
+ */
 router.post('/', async (req, res) => {
     try {
         let data = await CreateServiceProvider(req.db, req.body)
@@ -93,7 +147,34 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Base Update Route
+/**
+ * @swagger
+ *
+ * /service_provider/:id:
+ *   put:
+ *     description: Service Provider Update One Route
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         type: string
+ *         required: true
+ *         description: Id of the service provider requesting
+ *       - in:  body
+ *         description: Service Provider Updated Data Object
+ *         required: true
+ *         type: string
+ *         schema:
+ *           $ref: '#/definitions/ServiceProviderUpdate'
+ *     responses:
+ *       500:
+ *         description: Server Error
+ *       200:
+ *         description: Successful
+ *         schema:
+ *            $ref: '#/definitions/ServiceProvider'
+ */
 router.put('/:id', async (req, res) => {
     try {
         let data = await UpdateServiceProvider(req.db, req.params, req.body)
