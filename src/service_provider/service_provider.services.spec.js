@@ -9,7 +9,8 @@ const fakeProvider = {
 const mockDb = {
     service_provider: {
         findAll: jest.fn(() => fakeProvider),
-        findOne: jest.fn(() => fakeProvider)
+        findOne: jest.fn(() => fakeProvider),
+        update: jest.fn(res => Promise.resolve([1, [{ id: 1, name: 'test' }]]))
     }
 }
 
@@ -26,6 +27,6 @@ describe('Testing Service Provider Services', () => {
 
     it('Put /service_providers/id should call db.findOne', async () => {
         await UpdateServiceProvider(mockDb, {id: 1}, { name: 'test' })
-        expect(fakeProvider.save).toHaveBeenCalled()
+        expect(mockDb.service_provider.update).toHaveBeenCalled()
     })
 })
