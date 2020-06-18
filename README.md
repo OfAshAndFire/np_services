@@ -1,10 +1,5 @@
 ### This project is as of yet, unnamed
 
-## Setup
-1) `npm install`
-2) `npx sequelize db:create`
-3) `npx sequelize db:migrate`
-
 ## Env File
 In the root of your directory, create a .env file with the following properties
 ```
@@ -14,6 +9,11 @@ DB_HOST="localhost" // the domain the db is running on
 DB_PORT=5432 // the port the db runs on
 DB_SYNC=true // this tells the db to create tables and run migrations
 ```
+
+## Setup
+1) `npm install`
+2) `npx sequelize db:create`
+3) `npx sequelize db:migrate`
 
 ## Running Server
 `npm start`
