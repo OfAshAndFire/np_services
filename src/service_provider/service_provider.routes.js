@@ -65,6 +65,14 @@ import { FindAllServiceProviders, CreateServiceProvider, FindAllServiceProviders
  *     description: Service Provider Get All Route
  *     produces:
  *       - application/json
+ *     parameters:
+ *       - in: query
+ *         name: includes
+ *         schema:
+ *          type: array
+ *          items:
+ *           type: string
+ *          minItems: 0
  *     responses:
  *       500:
  *         description: Server Error
@@ -77,7 +85,7 @@ import { FindAllServiceProviders, CreateServiceProvider, FindAllServiceProviders
  */
 router.get('/', async (req, res) => {
     try {
-        let data = await FindAllServiceProviders(req.db)
+        let data = await FindAllServiceProviders(req.db, req.query)
         res.json(data);
     } catch (err) {
         res.status(500).json({error: "There was a server error"})
@@ -184,7 +192,26 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// Base Delete Route
+/**
+ * @swagger
+ *
+ * /service_provider/:id:
+ *   delete:
+ *     description: Service Provider Delete One Route
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         type: string
+ *         required: true
+ *         description: Id of the service provider requesting to delete
+ *     responses:
+ *       500:
+ *         description: Server Error
+ *       204:
+ *         description: Successful
+ */
 router.delete('/:id', async (req, res) => {
     try {
         await DeleteServiceProvider(req.db, req.params)

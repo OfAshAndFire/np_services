@@ -1,5 +1,10 @@
+import { buildIncludes } from "../utils/includes";
 
-export function FindAllServiceProviders(db) {
+export function FindAllServiceProviders(db, query) {
+    if(query && query.includes){
+        let include = buildIncludes(db, query.includes)
+        return db.service_provider.findAll({ include });
+    }
     return db.service_provider.findAll();
 }
 
