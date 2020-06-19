@@ -12,6 +12,7 @@ let production = {
 if(process.env.DATABASE_URL) {
   production = {
     url: process.env.DATABASE_URL,
+    "dialect": "postgres"
   }
 }
 module.exports = {
