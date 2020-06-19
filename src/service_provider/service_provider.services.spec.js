@@ -14,19 +14,26 @@ const mockDb = {
     }
 }
 
-describe('Testing Service Provider Services', () => {
+describe('Testing Service Provider Services Unit Tests', () => {
     it('GET /service_providers should call db.findAll', async () => {
-        await FindAllServiceProviders(mockDb)
+        await FindAllServiceProviders(mockDb)   
         expect(mockDb.service_provider.findAll).toHaveBeenCalled()
     })
 
     it('GET /service_providers/id should call db.findOne', async () => {
         await FindAllServiceProvidersById(mockDb, {id: 1})
-        expect(mockDb.service_provider.findOne).toHaveBeenCalled()
+        expect(mockDb.service_provider.findOne).toHaveBeenCalledWith({id: 1})
     })
 
     it('Put /service_providers/id should call db.findOne', async () => {
         await UpdateServiceProvider(mockDb, {id: 1}, { name: 'test' })
-        expect(mockDb.service_provider.update).toHaveBeenCalled()
+        expect(mockDb.service_provider.update).toHaveBeenCalledWith(
+            { name: 'test' },
+            {
+                returning: true,
+                where: {
+                    id: 1
+                }
+            })
     })
 })

@@ -1,5 +1,7 @@
-var router = require('express').Router();
+import express from 'express'
 import { FindAllServiceProviders, CreateServiceProvider, FindAllServiceProvidersById, UpdateServiceProvider, DeleteServiceProvider } from './service_provider.services'
+
+const router = express.Router();
 
 /**
  * @swagger

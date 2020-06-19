@@ -11,8 +11,8 @@ const fakeServiceProviders = [
     }
 ]
 
-describe("Service Provider Router Tests", () => {
-  test("GET /service_provider should return empty array", done => {
+describe("Service Provider Router Unit Tests", () => {
+  test("GET /service_provider should return fakeServiceProviders array", done => {
       FindAllServiceProviders.mockImplementation(() => fakeServiceProviders)
       request(app)
         .get("/service_provider")
@@ -23,12 +23,13 @@ describe("Service Provider Router Tests", () => {
         });
     });
 
-  test("GET /service_provider/:id should return empty array", done => {
+  test("GET /service_provider/:id call fakeServiceProvider with an id", done => {
       FindAllServiceProvidersById.mockImplementation(() => fakeServiceProviders[0])
       request(app)
         .get("/service_provider/1")
         .then(response => {
           expect(response.statusCode).toBe(200);
+          expect(FindAllServiceProvidersById.mock.calls[0][1]).toStrictEqual({ id: "1"})
           expect(response.body).toStrictEqual(fakeServiceProviders[0])
           done();
         });
@@ -47,6 +48,7 @@ describe("Service Provider Router Tests", () => {
           .then(response => {
             expect(response.statusCode).toBe(200);
             expect(response.body).toStrictEqual(mockCreateData)
+            expect(CreateServiceProvider.mock.calls[0][1]).toStrictEqual(mockCreateData)
             done();
           });
     });
