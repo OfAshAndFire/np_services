@@ -1,55 +1,56 @@
 {
-  "name": "np_services",
-  "version": "1.0.0",
-  "description": "",
-  "main": "./src/server.js",
-  "dependencies": {
-      "@babel/core": "^7.10.2",
-      "@babel/preset-env": "^7.10.2",
-      "@babel/cli": "^7.10.1",
-      "@babel/polyfill": "^7.10.1",
-      "body-parser": "^1.19.0",
-      "dotenv": "^8.2.0",
-      "express": "^4.17.1",
-      "pg": "^8.2.1",
-      "sequelize": "^5.21.13",
-      "swagger-ui-express": "^4.1.4",
-      "uuid": "^8.1.0"
-  },
-  "devDependencies": {
-      "babel-jest": "^26.0.1",
-      "jest": "^26.0.1",
-      "nodemon": "^2.0.4",
-      "sequelize-cli": "^5.5.1",
-      "superagent": "^5.2.2",
-      "supertest": "^4.0.2"
-  },
-  "jest": {
-      "testEnvironment": "node",
-      "verbose": true,
-      "moduleFileExtensions": [
-          "js",
-          "json",
-          "node"
-      ],
-      "testPathIgnorePatterns": [
-          "/node_modules/",
-          "/dist/"
-      ],
-      "transform": {
-          "^.+\\.jsx?$": "babel-jest"
-      },
-      "collectCoverage": true,
-      "testMatch": [
-          "./**/*.spec.js"
-      ]
-  },
-  "scripts": {
-      "test": "jest",
-      "build": "babel ./src --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-      "start": "npm run build && node dist/server.js",
-      "dev": "nodemon --exec babel-node src/server.js"
-  },
-  "author": "",
-  "license": "ISC"
+    "name": "np_services",
+    "version": "1.0.0",
+    "description": "",
+    "main": "./src/server.js",
+    "dependencies": {
+        "@babel/cli": "^7.10.1",
+        "@babel/core": "^7.10.2",
+        "@babel/polyfill": "^7.10.1",
+        "@babel/preset-env": "^7.10.2",
+        "body-parser": "^1.19.0",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "pg": "^8.2.1",
+        "sequelize": "^5.21.13",
+        "swagger-jsdoc": "^4.0.0",
+        "swagger-ui-express": "^4.1.4",
+        "uuid": "^8.1.0"
+    },
+    "devDependencies": {
+        "babel-jest": "^26.0.1",
+        "jest": "^26.0.1",
+        "nodemon": "^2.0.4",
+        "sequelize-cli": "^5.5.1",
+        "superagent": "^5.2.2",
+        "supertest": "^4.0.2"
+    },
+    "jest": {
+        "testEnvironment": "node",
+        "verbose": true,
+        "moduleFileExtensions": [
+            "js",
+            "json",
+            "node"
+        ],
+        "testPathIgnorePatterns": [
+            "/node_modules/",
+            "/dist/"
+        ],
+        "transform": {
+            "^.+\\.jsx?$": "babel-jest"
+        },
+        "collectCoverage": true,
+        "testMatch": [
+            "./**/*.spec.js"
+        ]
+    },
+    "scripts": {
+        "test": "jest",
+        "build": "babel ./src --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+        "start": "npm run build && node dist/server.js",
+        "dev": "nodemon --exec babel-node src/server.js"
+    },
+    "author": "",
+    "license": "ISC"
 }
