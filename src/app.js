@@ -7,8 +7,8 @@ import bodyParser from 'body-parser'
 import models from '../models'
 import { initDb } from './db'
 
-if(process.env.DB_SYNC){
-  initDb()
+if (process.env.DB_SYNC) {
+    initDb();
 }
 const swaggerDoc = swaggerJsDoc(swaggerDocument)
 
@@ -16,14 +16,14 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use((req, res, next) => {
-  req.db = models
-  next()
-})
+    req.db = models;
+    next();
+});
 
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDoc))
 app.use('/service_provider', require('./service_provider/service_provider.routes'))
 app.use('/categories', require('./categories/category.routes'))
-
+app.use("/user", require("./user/user.routes"));
 
 /**
  * @swagger
@@ -40,7 +40,7 @@ app.use('/categories', require('./categories/category.routes'))
  *            type: string
  */
 app.get("/", (req, res) => {
-  res.status(200).send("Hello World!");
+    res.status(200).send("Hello World!");
 });
 
 module.exports = app;

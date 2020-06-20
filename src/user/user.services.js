@@ -8,14 +8,15 @@ export async function FindAllUserbyId(db, { id }) {
 
 // Create a new user
 export async function CreateUser(db, user) {
-    return db.user.create({
+    console.log("entering CreateUser function");
+    const new_user = await db.user.create({
         first_name: user.first_name,
         last_name: user.last_name,
         email: user.email,
-        primary_phone: user.primary_phone,
-        createdAt: Date.now(),
-        modifiedAt: Date.now(),
     });
+
+    console.log(new_user);
+    return new_user;
 }
 
 export async function DeleteUser(db, { id }) {

@@ -4,7 +4,7 @@ import {
     CreateUser,
     UpdateUser,
     DeleteUser,
-} from "./service_provider.services";
+} from "./user.services";
 
 // Base Get Route
 router.get("/", async (req, res) => {
