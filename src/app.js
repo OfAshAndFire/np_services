@@ -22,6 +22,8 @@ app.use((req, res, next) => {
 
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDoc))
 app.use('/service_provider', require('./service_provider/service_provider.routes'))
+app.use('/categories', require('./categories/category.routes'))
+
 
 /**
  * @swagger
