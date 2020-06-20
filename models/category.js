@@ -9,6 +9,14 @@ module.exports = (sequelize, DataTypes) => {
         {
             name: Sequelize.UUID,
             description: Sequelize.STRING,
+            createdAt: {
+                allowNull: false,
+                type: Sequelize.DATE,
+            },
+            updatedAt: {
+                allowNull: false,
+                type: Sequelize.DATE,
+            }
         },
         {
             hooks: {
