@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
         'Category',
         {
             name: {
-              allowNull: false,
-              type: Sequelize.UUID
+                allowNull: false,
+                type: Sequelize.UUID,
             },
             description: Sequelize.STRING,
             createdAt: {
@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
             updatedAt: {
                 allowNull: false,
                 type: Sequelize.DATE,
-            }
+            },
         },
         {
             hooks: {
@@ -30,7 +30,12 @@ module.exports = (sequelize, DataTypes) => {
         },
     )
     Category.associate = function (models) {
-        // associations can be defined here
+        Category.belongsToMany(models.Service, {
+            through: 'ServiceCategories',
+            as: 'services',
+            foreignKey: 'categoryId',
+            otherKey: 'serviceId',
+        })
     }
     return Category
 }
