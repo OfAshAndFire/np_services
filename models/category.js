@@ -7,7 +7,10 @@ module.exports = (sequelize, DataTypes) => {
     const Category = sequelize.define(
         'Category',
         {
-            name: Sequelize.UUID,
+            name: {
+              allowNull: false,
+              type: Sequelize.UUID
+            },
             description: Sequelize.STRING,
             createdAt: {
                 allowNull: false,
