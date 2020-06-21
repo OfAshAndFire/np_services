@@ -4,6 +4,7 @@ const swaggerUi = require('swagger-ui-express')
 import { swaggerDocument } from './swaggerDoc'
 import swaggerJsDoc from 'swagger-jsdoc'
 import bodyParser from 'body-parser'
+import cors from 'cors'
 import models from '../models'
 import { initDb } from './db'
 
@@ -14,6 +15,15 @@ const swaggerDoc = swaggerJsDoc(swaggerDocument)
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+
+if (process.env.NODE_ENV === 'development') {
+    app.use(
+        cors({
+            origin: 'https://postwoman.io',
+            optionsSuccessStatus: 200,
+        }),
+    )
+}
 
 app.use((req, res, next) => {
     req.db = models
@@ -44,5 +54,3 @@ app.get('/', (req, res) => {
 })
 
 module.exports = app
-
-module.exports = app;
