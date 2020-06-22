@@ -1,5 +1,5 @@
 import express from 'express'
-import { FindAllServices, FindServicesById, UpdateService, CreateService } from './service.services'
+import { FindAllServices, FindServicesById, UpdateService, CreateService, DeleteService } from './service.services'
 
 const router = express.Router()
 
@@ -61,6 +61,15 @@ router.put('/:id', async (req, res) => {
     try {
         let data = await UpdateService(req.params, req.body)
         res.json(data)
+    } catch (err) {
+        res.status(500).json({ error: 'There was a server error' })
+    }
+})
+
+router.delete('/:id', async (req, res) => {
+    try {
+        await DeleteService(req.params, req.body)
+        res.status(204).json({ success: true })
     } catch (err) {
         res.status(500).json({ error: 'There was a server error' })
     }

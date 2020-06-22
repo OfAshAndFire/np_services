@@ -28,3 +28,9 @@ export async function UpdateService({ id }, data) {
         ([rowsUpdate, [updatedService]]) => updatedService,
     )
 }
+
+export async function DeleteService({ id }) {
+    let service = await models.Service.findOne({ id })
+
+    return service.destroy()
+}
