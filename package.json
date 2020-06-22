@@ -47,13 +47,14 @@
         "transform": {
             "^.+\\.jsx?$": "babel-jest"
         },
-        "collectCoverage": true,
+        "collectCoverage": false,
         "testMatch": [
             "./**/*.spec.js"
         ]
     },
     "scripts": {
         "test": "jest",
+        "test:coverage": "jest --coverage",
         "build": "babel ./src --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
         "start": "npm run build && node dist/server.js",
         "dev": "nodemon --exec babel-node src/server.js"
