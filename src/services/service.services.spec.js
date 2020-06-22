@@ -1,30 +1,29 @@
 import '../../test/testSetup'
-import models from '../../models'
-import { FindAllServices, FindServicesById, CreateService, UpdateService } from './service.services'
+import { FindAllServices, FindServicesById, CreateService, UpdateService, DeleteService } from './service.services'
 
 describe('Testing Service Services Unit Tests', () => {
-    it('GET /services should call db.findAll', async () => {
+    it('GET /services should call model findAll', async () => {
         sandbox.stub(models.Service, 'findAll')
         await FindAllServices()
 
         expect(models.Service.findAll.calledOnce).toBeTruthy()
     })
 
-    it('GET /services/id should call db.findOne', async () => {
+    it('GET /services/id should call model findOne', async () => {
         sandbox.stub(models.Service, 'findOne')
         await FindServicesById({ id: 1 })
 
         expect(models.Service.findOne.calledOnce).toBeTruthy()
     })
 
-    it('POST /services should call db.create', async () => {
+    it('POST /services should call model create', async () => {
         sandbox.stub(models.Service, 'create')
         await CreateService({ name: 'new service', description: 'new description' })
 
         expect(models.Service.create.calledOnce).toBeTruthy()
     })
 
-    it('PUT /services/id should call db.update', async () => {
+    it('PUT /services/id should call model update', async () => {
         const updatedService = {
             name: 'updated service name',
             description: 'updated service description',
